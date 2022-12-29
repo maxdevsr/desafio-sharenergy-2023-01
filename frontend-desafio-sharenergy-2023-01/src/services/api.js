@@ -4,7 +4,7 @@ function ApiConsume(name) {
   const apiUrlMap = {
     users: "https://randomuser.me/api/",
     cats: "https://http.cat",
-    dogs: "https://randomdog.me/api/"
+    dogs: "https://random.dog/woof.json"
   };
 
   const api = axios.create({

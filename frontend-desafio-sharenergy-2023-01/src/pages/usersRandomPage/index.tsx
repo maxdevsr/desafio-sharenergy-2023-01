@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Header from "../../components/header"
 import ApiConsume from "../../services/api"
 
 function UsersRamdom(){
@@ -8,7 +9,7 @@ function UsersRamdom(){
 
     const getUsers = async () => {
         try {
-            const res = await ApiConsume("users").get(`/?page=${count}&results=10&seed=abc`)
+            const res = await ApiConsume("users").get(`/?page=${count}&results=8&seed=abc`)
             console.log(res.data.results)
             setFakeUsers(res.data.results)
         } catch (error) {
@@ -22,13 +23,12 @@ function UsersRamdom(){
     // foto do usuário, nome completo, email, username e idade
 
     return (
-        <>
-            <button onClick={(() => setCount(count - 1))} disabled={count <= 1 ? true : false}> ant</button>
-            <button onClick={(() => setCount(count + 1))}> prox</button>
-            <ul>
+        <div className="flex flex-col w-screen h-screen items-center">
+            <Header/>
+            <ul className="flex flex-wrap w-[1100px] h-[100%] gap-3 content-center">
             {fakeUsers?.map((user:any, index) => (
-                    <li key={index}>
-                        <img src={user.picture.medium} alt="Foto de perfil" />
+                <li key={index} className="flex w-[250px] h-[320px] flex-col items-start p-4">
+                        <img src={user.picture.large} alt="Foto de perfil" className="w-28 h-28 rounded"/>
                         <span>Nome:</span>
                         <div>
                             <span>{user.name.title} {user.name.first} {user.name.last}</span>    
@@ -41,7 +41,12 @@ function UsersRamdom(){
                     </li>
                 ))}
             </ul>
-        </>
+            <div className="w-[1100px] flex justify-around">
+                <button onClick={(() => setCount(count - 1))} disabled={count <= 1 ? true : false} className="" > ant</button>
+                <button onClick={(() => setCount(count + 1))}  > prox</button>
+            </div>
+        </div>
+
     )
 }
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Header from '../../components/header';
 import ApiConsume from '../../services/api';
 
 function CatsRamdom(){
@@ -8,17 +9,7 @@ function CatsRamdom(){
 
   const getStatusCode = async () => {
     try{
-       // const res = await ApiConsume("cats").get(`${statusCode}`,{
-    
-    //       mode: 'no-cors', 
-    //       cache: 'no-cache', 
-    //       credentials: 'same-origin',
-            // headers: {
-            //     'Content-Type': 'image/jpeg'
-            //     },
-            // })
-        //console.log(res)
-      const res = await fetch(`https://http.cat/${statusCode}`,{
+      fetch(`https://http.cat/${statusCode}`,{
           method: 'GET',
           mode: 'no-cors', 
           cache: 'no-cache', 
@@ -26,12 +17,9 @@ function CatsRamdom(){
           headers: {
           'Content-Type': 'image/jpeg'
           },
-      })
-      res.blob().then(blob => {
-        console.log("vapo",blob);
-        
-        setImg(URL.createObjectURL(blob))
-      })
+      }).then(response => response.blob())
+        .then(URL.createObjectURL)
+        .then(url => setImg(url))
     } catch (error) {
       console.log(error)
     }
@@ -42,10 +30,11 @@ function CatsRamdom(){
   }, [statusCode])
 
   return (
-      <>
+      <div>
+        <Header/>
       {img}
       <img src={img} alt="imagem" />
-      </>
+      </div>
   )
 }
 
