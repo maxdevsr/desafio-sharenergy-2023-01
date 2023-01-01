@@ -21,10 +21,10 @@ function CatsRamdom() {
   }, [statusCode]);
 
   return (
-    <div>
+    <>
       <Header />
       {img && <img src={img} alt="imagem" />}
-    </div>
+    </>
   );
 }
 

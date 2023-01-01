@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
 import Login from "../pages/login";
 import CatsRamdom from "../pages/pageApiCat";
 import DogsRamdom from "../pages/pageApiDog";

@@ -4,7 +4,7 @@ import Routes from './routes';
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex flex-col w-screen h-screen items-center">
       <Routes/>
     </div>
   );

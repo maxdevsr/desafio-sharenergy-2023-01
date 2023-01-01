@@ -10,7 +10,6 @@ function UsersRamdom(){
     const getUsers = async () => {
         try {
             const res = await ApiConsume("users").get(`/?page=${count}&results=8&seed=abc`)
-            console.log(res.data.results)
             setFakeUsers(res.data.results)
         } catch (error) {
             console.log(error)
@@ -23,7 +22,7 @@ function UsersRamdom(){
     // foto do usuário, nome completo, email, username e idade
 
     return (
-        <div className="flex flex-col w-screen h-screen items-center">
+        <>
             <Header/>
             <ul className="flex flex-wrap w-[1100px] h-[100%] gap-3 content-center">
             {fakeUsers?.map((user:any, index) => (
@@ -42,10 +41,10 @@ function UsersRamdom(){
                 ))}
             </ul>
             <div className="w-[1100px] flex justify-around">
-                <button onClick={(() => setCount(count - 1))} disabled={count <= 1 ? true : false} className="" > ant</button>
-                <button onClick={(() => setCount(count + 1))}  > prox</button>
+                <button onClick={(() => setCount(count - 1))} disabled={count <= 1 ? true : false} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" > ant</button>
+                <button onClick={(() => setCount(count + 1))} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" > prox</button>
             </div>
-        </div>
+        </>
 
     )
 }

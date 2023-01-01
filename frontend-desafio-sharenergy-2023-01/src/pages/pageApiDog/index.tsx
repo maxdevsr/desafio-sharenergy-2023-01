@@ -23,13 +23,13 @@ function DogsRamdom(){
   }, [count])
 
   return (
-      <div className="">
+      <>
         <Header/>
           <div className="flex flex-col w-screen h-screen items-center">
             <img src={img} alt="imagem" className='w-[300px] h-[400px]'  />
             <button onClick={(() => setCount(count + 1))}>Atualizar</button>
           </div>
-      </div>
+      </>
   )
 }
 
