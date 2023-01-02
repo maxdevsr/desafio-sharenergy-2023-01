@@ -6,6 +6,7 @@ function UsersRamdom(){
 
     const [count, setCount] = useState(1)
     const [fakeUsers, setFakeUsers] = useState([])
+    const [textInput, setTextInput] = useState("")
 
     const getUsers = async () => {
         try {
@@ -15,6 +16,16 @@ function UsersRamdom(){
             console.log(error)
         }
     }
+
+    const handleChange = (e: any) => {
+     setTextInput(e.target.value);
+   }
+   
+   const submitName = (e: any) => {
+     e.preventDefault();
+     console.log(textInput);
+   }
+
     useEffect(() => {
         getUsers()
     }, [count])
@@ -23,20 +34,22 @@ function UsersRamdom(){
 
     return (
         <>
-            <Header/>
-            <ul className="flex flex-wrap w-[1100px] h-[100%] gap-3 content-center">
+            <Header>
+                <form onSubmit={submitName} className="flex flex-row p-6">
+                    <button className="mr-5 p-3 rounded bg-blue-600 hover:bg-blue-700" type="submit">Buscar usuario</button>
+                    <input className="p-2 rounded" type="text" placeholder="Pesquise um nome" value={textInput} onChange={handleChange}/>
+                </form>
+            </Header>
+            <ul className="flex flex-wrap w-[70%] gap-3 content-center mt-8 mb-8">
             {fakeUsers?.map((user:any, index) => (
-                <li key={index} className="flex w-[250px] h-[320px] flex-col items-start p-4">
-                        <img src={user.picture.large} alt="Foto de perfil" className="w-28 h-28 rounded"/>
-                        <span>Nome:</span>
-                        <div>
+                <li key={index} className="bg-gradient-to-r from-blue-400 to-indigo-500 rounded-2xl text-white p-8 text-center h-72 max-w-sm flex flex-col items-start min-w-[315px]">
+                        <img src={user.picture.large} alt="Foto de perfil" className="w-28 h-28 rounded mb-3"/>
+                        <div className="mb-2">
                             <span>{user.name.title} {user.name.first} {user.name.last}</span>    
                         </div>
-                        <span>Email:</span>
-                        <span>{user.email} </span>
-                        <span>Usuario:</span>
-                        <span>{user.login.username}</span>
-                        <span>Idade: {user.dob.age}</span>
+                        <span className="mb-2">{user.email} </span>
+                        <span className="mb-2">{user.login.username}</span>
+                        <span className="mb-2">Idade: {user.dob.age}</span>
                     </li>
                 ))}
             </ul>

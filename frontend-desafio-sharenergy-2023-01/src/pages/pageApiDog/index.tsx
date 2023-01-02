@@ -24,10 +24,15 @@ function DogsRamdom(){
 
   return (
       <>
-        <Header/>
+        <Header>
+           <div></div>
+        </Header>
+        <h1 className='mt-[7rem] font-bold'>
+          A cada clique no botão uma foto nova e aleatoria de um cachorro sera renderizada na sua tela! 
+        </h1>
           <div className="flex flex-col w-screen h-screen items-center">
-            <img src={img} alt="imagem" className='w-[300px] h-[400px]'  />
-            <button onClick={(() => setCount(count + 1))}>Atualizar</button>
+            <img src={img} alt="imagem" className='w-[300px] h-[400px] rounded mt-[5rem]'  />
+            <button onClick={(() => setCount(count + 1))} className="p-9 bg-blue-500 hover:bg-blue-700 mt-8 rounded" >Gerar nova foto</button>
           </div>
       </>
   )
