@@ -22,8 +22,8 @@ function CatsRamdom() {
    
    const submitName = (e: any) => {
      e.preventDefault();
-     console.log(textInput);
      if(httpCodes.includes(textInput.toString())){return setStatusCode(textInput)}
+     setTextInput("")
      return setStatusCode("404")
    }
 
@@ -34,7 +34,7 @@ function CatsRamdom() {
         const url = URL.createObjectURL(resp.data);
         console.log(url)
         setImg(url);
-}) };
+        }).catch((err) => console.log(err)) };
 
   useEffect(() => {
       getStatusCode();
@@ -46,23 +46,25 @@ function CatsRamdom() {
       <Header>
            <div></div>
       </Header> 
-      <div className='w-[50rem] bg-slate-300 rounded p-3 mt-5'>
-        <div className='flex justify-center flex-col p-5 items-center'>
-          <h1>Clique em qualquer botao com um status HTTP e veja a imagem do gato correspondente!</h1>
-          <h1 className='mt-3 mb-3'>Clique no botão de pesquisa para ir em um status code especifico.</h1>
-          <h1>Caso nao renderize a imagem <a target="_blank" href="https://cors-anywhere.herokuapp.com/corsdemo" className='p-2 bg-blue-500 hover:bg-blue-700 rounded'>clique aqui</a> e clique no botao <strong>Request.</strong></h1>
-          <form onSubmit={submitName} className="flex flex-row p-3 rounded bg-white mt-3">
-            <input className="p-2 rounded" type="text" placeholder="Digite um status HTTP" value={textInput} onChange={handleChange}/>
-            <button className="mr-5 p-3 rounded bg-blue-600 hover:bg-blue-700" type="submit">Click</button>
-          </form>
+      <div className='flex mt-[5rem]'>
+        <div className='w-[50rem] bg-slate-300 rounded p-3 mt-5'>
+          <div className='flex justify-center flex-col p-5 items-center'>
+            <h1>Clique em qualquer botao com um status HTTP e veja a imagem do gato correspondente!</h1>
+            <h1 className='mt-3 mb-3'>Clique no botão de pesquisa para ir em um status code especifico.</h1>
+            <h1>Caso nao renderize a imagem <a target="_blank" href="https://cors-anywhere.herokuapp.com/corsdemo" className='p-2 bg-blue-500 hover:bg-blue-700 rounded'>clique aqui</a> e clique no botao <strong>Request.</strong></h1>
+            <form onSubmit={submitName} className="flex flex-row p-3 rounded bg-white mt-3">
+              <input className="p-2 rounded" type="text" placeholder="Digite um status HTTP" value={textInput} onChange={handleChange}/>
+              <button className="mr-5 p-3 rounded bg-blue-600 hover:bg-blue-700" type="submit">Click</button>
+            </form>
+          </div>
+          {
+            httpCodes.map((code: any, index) => (
+              <button onClick={() => setStatusCode(code)} className="bg-blue-500 hover:bg-blue-700 rounded w-[55px] h-[30px] m-1" key={index} >{code}</button>
+            ))
+          }
         </div>
-        {
-          httpCodes.map((code: any, index) => (
-            <button onClick={() => setStatusCode(code)} className="bg-blue-500 hover:bg-blue-700 rounded w-[55px] h-[30px] m-1" key={index} >{code}</button>
-          ))
-        }
+        {img && <img src={img} alt="imagem" className='w-[450px] h-[500px] mt-5 rounded' />}
       </div>
-      {img && <img src={img} alt="imagem" className='w-[450px] h-[500px] mt-5 rounded' />}
     </>
   );
 }

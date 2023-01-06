@@ -30,28 +30,37 @@ const schema = yup.object().shape({
 
 
 return (
-    <form onSubmit={handleSubmit(submitedForm)}>
-        <label>
-        EMAIL
-        {errors && errors.email?.message as string}
+    <form className="flex flex-col justify-center bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(submitedForm)}>
+        <label className="flex flex-col text-gray-700 text-sm font-bold mb-2">
+            EMAIL
+           <span className="text-red-600">{errors && errors.email?.message as string}</span>
         </label>
-        <input
+        <input className="mb-6 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         {...register("email")}
         placeholder="Seu email !"
         />
-
-        <label>
-        SENHA
-         {errors && errors.email?.message as string}
+        <label className="flex flex-col text-gray-700 text-sm font-bold mb-2">
+          SENHA
+          <span className="text-red-600">
+            {errors && errors.password?.message as string}
+          </span>
         </label>
-        <input
+        <input className="mb-6  shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         {...register("password")}
         placeholder="************"
         type="password"
         />
-        <div>
-        <button type="submit">LOGIN !</button>
+        <div className="w-[100%]">
+          <button type="submit" className="mb-6 text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2">
+            Login
+          </button>
         </div>
+        <label className="md:w-2/3 flex text-gray-500 font-bold">
+          <input className="mr-2 leading-tight" type="checkbox"/>
+          <span className="text-sm">
+            Manter conectado
+          </span>
+        </label>
     </form>
     )
 }

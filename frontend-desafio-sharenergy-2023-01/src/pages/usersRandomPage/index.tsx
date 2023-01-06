@@ -7,6 +7,7 @@ function UsersRamdom(){
     const [count, setCount] = useState(1)
     const [fakeUsers, setFakeUsers] = useState([])
     const [textInput, setTextInput] = useState("")
+    const [usersFinded, setUsersFinded] = useState([])
 
     const getUsers = async () => {
         try {
@@ -22,8 +23,14 @@ function UsersRamdom(){
    }
    
    const submitName = (e: any) => {
-     e.preventDefault();
-     console.log(textInput);
+       e.preventDefault();
+       console.log(fakeUsers, textInput)
+       setUsersFinded(fakeUsers.filter((user: any) => {
+           if(user.name.first.toLowerCase() === textInput.toLowerCase())return user
+           if (user.email.toLowerCase() === textInput.toLowerCase()) return user
+           return null
+        }))
+        console.log(usersFinded)
    }
 
     useEffect(() => {
