@@ -11,7 +11,6 @@ function DogsRamdom(){
     try{
        const { data } = await ApiConsume("dogs").get(`/`)
        console.log(data.url)
-      //  if(!res.data.url) getStatusCode()
        setImg(data.url)
     } catch (error) {
       console.log(error)

@@ -22,7 +22,8 @@ function UsersRamdom(){
      setTextInput(e.target.value);
    }
    
-   const submitName = (e: any) => {
+    const submitName = (e: any) => {
+       setUsersFinded([])
        e.preventDefault();
        console.log(fakeUsers, textInput)
        setUsersFinded(fakeUsers.filter((user: any) => {
@@ -30,7 +31,6 @@ function UsersRamdom(){
            if (user.email.toLowerCase() === textInput.toLowerCase()) return user
            return null
         }))
-        console.log(usersFinded)
    }
 
     useEffect(() => {
@@ -43,12 +43,12 @@ function UsersRamdom(){
         <>
             <Header>
                 <form onSubmit={submitName} className="flex flex-row p-6">
-                    <button className="mr-5 p-3 rounded bg-blue-600 hover:bg-blue-700" type="submit">Buscar usuario</button>
+                    <button className="text-white font-bold py-2 px-4 rounded-full hover:bg-indigo-800 hover:text-white shadow-md" type="submit">Buscar usuario</button>
                     <input className="p-2 rounded" type="text" placeholder="Pesquise um nome" value={textInput} onChange={handleChange}/>
                 </form>
             </Header>
             <ul className="flex flex-wrap w-[70%] gap-3 content-center mt-8 mb-8">
-            {fakeUsers?.map((user:any, index) => (
+            {(usersFinded.length ? usersFinded : fakeUsers).map((user:any, index) => (
                 <li key={index} className="bg-gradient-to-r from-blue-400 to-indigo-500 rounded-2xl text-white p-8 text-center h-72 max-w-sm flex flex-col items-start min-w-[315px]">
                         <img src={user.picture.large} alt="Foto de perfil" className="w-28 h-28 rounded mb-3"/>
                         <div className="mb-2">
@@ -60,7 +60,7 @@ function UsersRamdom(){
                     </li>
                 ))}
             </ul>
-            <div className="w-[1100px] flex justify-around">
+            <div className={usersFinded.length ? "hidden" : "w-[1100px] flex justify-around"}>
                 <button onClick={(() => setCount(count - 1))} disabled={count <= 1 ? true : false} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" > ant</button>
                 <button onClick={(() => setCount(count + 1))} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" > prox</button>
             </div>

@@ -30,7 +30,7 @@ const schema = yup.object().shape({
 
 
 return (
-    <form className="flex flex-col justify-center bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(submitedForm)}>
+    <form className="flex flex-col !justify-center mt-[8rem] bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(submitedForm)}>
         <label className="flex flex-col text-gray-700 text-sm font-bold mb-2">
             EMAIL
            <span className="text-red-600">{errors && errors.email?.message as string}</span>

@@ -59,7 +59,7 @@ function CatsRamdom() {
           </div>
           {
             httpCodes.map((code: any, index) => (
-              <button onClick={() => setStatusCode(code)} className="bg-blue-500 hover:bg-blue-700 rounded w-[55px] h-[30px] m-1" key={index} >{code}</button>
+              <button onClick={() => setStatusCode(code)} className="text-white font-bold py-2 bg-blue-500 hover:bg-blue-700 rounded w-55 h-30 m-1 shadow-md items-center pl-2 pr-2" key={index} >{code}</button>
             ))
           }
         </div>
